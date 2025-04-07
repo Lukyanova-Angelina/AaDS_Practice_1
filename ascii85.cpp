@@ -1,9 +1,5 @@
-#include <iostream>
-#include <string>
-#include <cstdint>
-#include <cstring>
-#include <vector>
-#include <cmath>
+#include <gtest/gtest.h>
+
 
 const std::string alphabet = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstu";
 
@@ -65,7 +61,7 @@ std::vector<char> decoder(std::vector<char> &result) {
 	for (char c : result) {
 		if (c == 'z') {
 			for (int i = 0; i < 5; ++i) input.push_back('!');
-		} else if (c != ' ' && c != '\n' && c != '\r') {
+		} else if (!std::isspace(static_cast<unsigned char>(c))) {
 			input.push_back(c);
 		}
 	}
@@ -110,41 +106,41 @@ std::vector<char> decoder(std::vector<char> &result) {
 	return words;
 }
 
-int main(int argc, char* argv[]) {
-	bool decode_mode = false;
+// int main(int argc, char* argv[]) {
+// 	bool decode_mode = false;
 
-	if (argc > 1) {
-		std::string flag(argv[1]);
-		if (flag == "-d") decode_mode = true;
-		else if (flag != "-e") {
-			std::cerr << "Usage: " << argv[0] << " [-e | -d]\n";
-			return 1;
-		}
-	}
+// 	if (argc > 1) {
+// 		std::string flag(argv[1]);
+// 		if (flag == "-d") decode_mode = true;
+// 		else if (flag != "-e") {
+// 			std::cerr << "Usage: " << argv[0] << " [-e | -d]\n";
+// 			return 1;
+// 		}
+// 	}
 
-	try {
+// 	try {
 
-		if (decode_mode) {
-			std::vector<char> input(
-				std::istreambuf_iterator<char>(std::cin),
-				std::istreambuf_iterator<char>()
-			);
-			std::vector<char> decoded = decoder(input);
-			std::copy(decoded.begin(), decoded.end(),
-				std::ostreambuf_iterator<char>(std::cout));
-		} else {
-			std::vector<char> input(
-				std::istreambuf_iterator<char>(std::cin),
-				std::istreambuf_iterator<char>()
-			);
-			std::vector<char> encoded = encoder(input);
-			std::copy(encoded.begin(), encoded.end(),
-				std::ostreambuf_iterator<char>(std::cout));
-		}
-	} catch (const std::exception& e) {
-		std::cerr << "Error: " << e.what() << std::endl;
-		return 1;
-	}
+// 		if (decode_mode) {
+// 			std::vector<char> input(
+// 				std::istreambuf_iterator<char>(std::cin),
+// 				std::istreambuf_iterator<char>()
+// 			);
+// 			std::vector<char> decoded = decoder(input);
+// 			std::copy(decoded.begin(), decoded.end(),
+// 				std::ostreambuf_iterator<char>(std::cout));
+// 		} else {
+// 			std::vector<char> input(
+// 				std::istreambuf_iterator<char>(std::cin),
+// 				std::istreambuf_iterator<char>()
+// 			);
+// 			std::vector<char> encoded = encoder(input);
+// 			std::copy(encoded.begin(), encoded.end(),
+// 				std::ostreambuf_iterator<char>(std::cout));
+// 		}
+// 	} catch (const std::exception& e) {
+// 		std::cerr << "Error: " << e.what() << std::endl;
+// 		return 1;
+// 	}
 
-	return 0;
-}
+// 	return 0;
+// }

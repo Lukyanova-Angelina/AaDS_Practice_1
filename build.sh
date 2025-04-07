@@ -1,2 +1,2 @@
 #!/bin/bash
-g++ -o ascii85 main.cpp -O2
+g++ -o ascii85 ascii85.cpp -O2
