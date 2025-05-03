@@ -5,6 +5,6 @@
 ## Contacts
 st128743@stdudent.spbu.ru
 ## Build
-./build.sh
+./run_tests.sh
 ## Run
-./ascii85 -e / -d
+./tests
