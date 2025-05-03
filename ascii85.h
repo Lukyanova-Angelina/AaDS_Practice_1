@@ -6,7 +6,7 @@
 #include <cstring>
 #include <vector>
 #include <cmath>
-const std::string alphabet;
+extern const std::string alphabet;
 bool isLittleEndian();
 std::vector<char> encoder(std::vector<char> &words);
 std::vector<char> decoder(std::vector<char> &result);
